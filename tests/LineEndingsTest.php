@@ -20,7 +20,7 @@ class LineEndingsTest extends TestCase
         }
         FILE;
 
-        $this->assertSame([
+        $this->assertEquals([
             '<?php',
             '',
             'class Post extends Model',
@@ -50,7 +50,7 @@ class LineEndingsTest extends TestCase
             'class Post extends Model {}',
         ];
 
-        $this->assertSame($string, implode(PHP_EOL, $parts));
+        $this->assertEquals($string, implode(PHP_EOL, $parts));
     }
 
     /**
@@ -71,7 +71,7 @@ class LineEndingsTest extends TestCase
             'class Post extends Model {}',
         ];
 
-        $this->assertSame($string, implode("\n", $parts));
+        $this->assertEquals($string, implode("\n", $parts));
     }
 
     /**
@@ -92,6 +92,6 @@ class LineEndingsTest extends TestCase
             'class Post extends Model {}',
         ];
 
-        $this->assertSame($string, implode("\r\n", $parts));
+        $this->assertEquals($string, implode("\r\n", $parts));
     }
 }
