@@ -94,4 +94,49 @@ class LineEndingsTest extends TestCase
 
         $this->assertEquals($string, implode("\r\n", $parts));
     }
+
+    /**
+     * @test
+     * @testdox concatenate with '\n' and then replace with PHP_EOL (should always work?)
+     */
+    public function concatenate_with_n_and_replace()
+    {
+        $string = <<<'FILE'
+        <?php
+
+        class Post extends Model {}
+        FILE;
+
+        $parts = [
+            '<?php',
+            '',
+            'class Post extends Model {}',
+        ];
+
+        $imploded = implode("\n", $parts);
+
+        $this->assertEquals($string, preg_replace('/(?<=[^\r]|^)\n/', PHP_EOL, $imploded));
+    }
+    /**
+     * @test
+     * @testdox concatenate with '\r\n' and then replace with PHP_EOL (should always work?)
+     */
+    public function concatenate_with_rn_and_replace()
+    {
+        $string = <<<'FILE'
+        <?php
+
+        class Post extends Model {}
+        FILE;
+
+        $parts = [
+            '<?php',
+            '',
+            'class Post extends Model {}',
+        ];
+
+        $imploded = implode("\r\n", $parts);
+
+        $this->assertEquals($string, preg_replace('/(?<=[^\r]|^)\n/', PHP_EOL, $imploded));
+    }
 }
