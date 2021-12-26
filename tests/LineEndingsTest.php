@@ -55,7 +55,7 @@ class LineEndingsTest extends TestCase
 
     /**
      * @test
-     * @requires os family Darwin|Linux
+     * @requires OS FAMILY Darwin|Linux
      * @testdox concatenate with '\n'
      */
     public function concatenate_with_n()
@@ -77,7 +77,7 @@ class LineEndingsTest extends TestCase
 
     /**
      * @test
-     * @requires os family Windows
+     * @requires OS FAMILY Windows
      * @testdox concatenate with '\r\n'
      */
     public function concatenate_with_rn()
