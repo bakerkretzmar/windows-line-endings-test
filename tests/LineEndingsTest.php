@@ -34,7 +34,7 @@ class LineEndingsTest extends TestCase
 
     /**
      * @test
-     * @testdox concatenate with PHP_EOL (should always work)
+     * @testdox concatenate with PHP_EOL
      */
     public function concatenate_with_eol()
     {
@@ -55,7 +55,8 @@ class LineEndingsTest extends TestCase
 
     /**
      * @test
-     * @testdox concatenate with '\n' (should work on ubuntu and macos)
+     * @requires os family Darwin|Linux
+     * @testdox concatenate with '\n'
      */
     public function concatenate_with_n()
     {
@@ -76,7 +77,8 @@ class LineEndingsTest extends TestCase
 
     /**
      * @test
-     * @testdox concatenate with '\r\n' (should work on windows)
+     * @requires os family Windows
+     * @testdox concatenate with '\r\n'
      */
     public function concatenate_with_rn()
     {
@@ -97,7 +99,7 @@ class LineEndingsTest extends TestCase
 
     /**
      * @test
-     * @testdox concatenate with '\n' and then replace with PHP_EOL (should always work?)
+     * @testdox concatenate with '\n' and replace with PHP_EOL
      */
     public function concatenate_with_n_and_replace()
     {
@@ -115,11 +117,12 @@ class LineEndingsTest extends TestCase
 
         $imploded = implode("\n", $parts);
 
-        $this->assertEquals($string, preg_replace('/(?<=[^\r]|^)\n/', PHP_EOL, $imploded));
+        $this->assertEquals($string, preg_replace('/\r?\n/', PHP_EOL, $imploded));
     }
+
     /**
      * @test
-     * @testdox concatenate with '\r\n' and then replace with PHP_EOL (should always work?)
+     * @testdox concatenate with '\r\n' and replace with PHP_EOL
      */
     public function concatenate_with_rn_and_replace()
     {
@@ -137,6 +140,6 @@ class LineEndingsTest extends TestCase
 
         $imploded = implode("\r\n", $parts);
 
-        $this->assertEquals($string, preg_replace('/(?<=[^\r]|^)\n/', PHP_EOL, $imploded));
+        $this->assertEquals($string, preg_replace('/\r?\n/', PHP_EOL, $imploded));
     }
 }
