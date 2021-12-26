@@ -31,4 +31,67 @@ class LineEndingsTest extends TestCase
             '}',
         ], explode(PHP_EOL, $string));
     }
+
+    /**
+     * @test
+     * @testdox concatenate with PHP_EOL (should always work)
+     */
+    public function concatenate_with_eol()
+    {
+        $string = <<<'FILE'
+        <?php
+
+        class Post extends Model {}
+        FILE;
+
+        $parts = [
+            '<?php',
+            '',
+            'class Post extends Model {}',
+        ];
+
+        $this->assertSame($string, implode(PHP_EOL, $parts));
+    }
+
+    /**
+     * @test
+     * @testdox concatenate with '\n' (should work on ubuntu and macos)
+     */
+    public function concatenate_with_n()
+    {
+        $string = <<<'FILE'
+        <?php
+
+        class Post extends Model {}
+        FILE;
+
+        $parts = [
+            '<?php',
+            '',
+            'class Post extends Model {}',
+        ];
+
+        $this->assertSame($string, implode("\n", $parts));
+    }
+
+    /**
+     * @test
+     * @testdox concatenate with '\r\n' (should work on windows)
+     */
+    public function concatenate_with_rn()
+    {
+        $string = <<<'FILE'
+        <?php
+
+        class Post extends Model {}
+        FILE;
+
+        $parts = [
+            '<?php',
+            '',
+            'class Post extends Model {}',
+        ];
+
+        $this->assertSame($string, implode("\r\n", $parts));
+    }
 }
