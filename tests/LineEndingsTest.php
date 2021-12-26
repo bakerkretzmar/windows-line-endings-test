@@ -29,7 +29,6 @@ class LineEndingsTest extends TestCase
             "        'email_verified_at' => 'datetime',",
             '    ];',
             '}',
-            '',
         ], explode(PHP_EOL, $string));
     }
 }
